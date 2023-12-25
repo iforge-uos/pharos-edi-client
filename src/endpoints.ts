@@ -176,7 +176,7 @@ export const ENDPOINTS = {
   GetUserPermissions: z.object({ result: z.string() }),
   InitializeSession: z.object({
     session_id: z.string(),
-    utcTime: z.string(),
+    utc_time: z.string(),
   }),
   InitializeSession2: z.object({
     session_id: z.string(),
