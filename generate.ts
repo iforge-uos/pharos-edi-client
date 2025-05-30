@@ -1,6 +1,6 @@
+import fs from "node:fs";
 import axios from "axios";
 import { parseAndGenerate } from "wsdl-tsclient";
-import fs from "fs";
 
 console.log("Please ensure you are on the VPN");
 const URL = "http://lords.shef.ac.uk/pharosedi/ediservice.asmx?wsdl";
