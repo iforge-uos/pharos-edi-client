@@ -1,0 +1,4 @@
+
+/** AddUserGroupSoapOut */
+export interface AddUserGroupSoapOut {
+}

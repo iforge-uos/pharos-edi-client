@@ -1,0 +1,4 @@
+
+/** UnlockMFDSoapOut */
+export interface UnlockMfdSoapOut {
+}

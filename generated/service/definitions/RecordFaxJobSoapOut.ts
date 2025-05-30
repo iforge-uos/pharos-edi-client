@@ -1,0 +1,4 @@
+
+/** RecordFaxJobSoapOut */
+export interface RecordFaxJobSoapOut {
+}

@@ -1,0 +1,4 @@
+
+/** CheckPrintJobPasswordSoapOut */
+export interface CheckPrintJobPasswordSoapOut {
+}

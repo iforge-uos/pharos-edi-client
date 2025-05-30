@@ -1,0 +1,4 @@
+
+/** OnlineSoapOut */
+export interface OnlineSoapOut {
+}

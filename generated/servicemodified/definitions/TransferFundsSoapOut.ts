@@ -1,0 +1,4 @@
+
+/** TransferFundsSoapOut */
+export interface TransferFundsSoapOut {
+}

@@ -1,0 +1,4 @@
+
+/** CreditUserSoapOut */
+export interface CreditUserSoapOut {
+}

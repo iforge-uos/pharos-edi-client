@@ -1,0 +1,4 @@
+
+/** ReleasePrintJobSoapOut */
+export interface ReleasePrintJobSoapOut {
+}

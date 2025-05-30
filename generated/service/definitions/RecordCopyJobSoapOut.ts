@@ -1,0 +1,4 @@
+
+/** RecordCopyJobSoapOut */
+export interface RecordCopyJobSoapOut {
+}

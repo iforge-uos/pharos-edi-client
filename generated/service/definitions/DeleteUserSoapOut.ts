@@ -1,0 +1,4 @@
+
+/** DeleteUserSoapOut */
+export interface DeleteUserSoapOut {
+}

@@ -1,0 +1,4 @@
+
+/** RecordPrintJobSoapOut */
+export interface RecordPrintJobSoapOut {
+}

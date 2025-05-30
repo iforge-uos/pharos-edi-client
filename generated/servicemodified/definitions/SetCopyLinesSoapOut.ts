@@ -1,0 +1,4 @@
+
+/** SetCopyLinesSoapOut */
+export interface SetCopyLinesSoapOut {
+}

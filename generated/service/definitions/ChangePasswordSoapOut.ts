@@ -1,0 +1,4 @@
+
+/** ChangePasswordSoapOut */
+export interface ChangePasswordSoapOut {
+}

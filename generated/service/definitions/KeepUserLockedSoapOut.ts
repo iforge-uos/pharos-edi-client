@@ -1,0 +1,4 @@
+
+/** KeepUserLockedSoapOut */
+export interface KeepUserLockedSoapOut {
+}

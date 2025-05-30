@@ -1,0 +1,4 @@
+
+/** LicenseRequestSoapOut */
+export interface LicenseRequestSoapOut {
+}

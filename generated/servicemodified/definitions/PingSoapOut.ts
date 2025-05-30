@@ -1,0 +1,4 @@
+
+/** PingSoapOut */
+export interface PingSoapOut {
+}

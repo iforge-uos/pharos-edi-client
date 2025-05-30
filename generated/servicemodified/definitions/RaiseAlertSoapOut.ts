@@ -1,0 +1,4 @@
+
+/** RaiseAlertSoapOut */
+export interface RaiseAlertSoapOut {
+}

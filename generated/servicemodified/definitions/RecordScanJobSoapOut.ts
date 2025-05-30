@@ -1,0 +1,4 @@
+
+/** RecordScanJobSoapOut */
+export interface RecordScanJobSoapOut {
+}
