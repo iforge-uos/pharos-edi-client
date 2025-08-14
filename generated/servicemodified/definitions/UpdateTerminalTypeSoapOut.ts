@@ -1,4 +1,0 @@
-
-/** UpdateTerminalTypeSoapOut */
-export interface UpdateTerminalTypeSoapOut {
-}

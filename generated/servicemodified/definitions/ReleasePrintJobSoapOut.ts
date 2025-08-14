@@ -1,4 +1,0 @@
-
-/** ReleasePrintJobSoapOut */
-export interface ReleasePrintJobSoapOut {
-}

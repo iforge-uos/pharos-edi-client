@@ -1,0 +1,10 @@
+/** GetCodeDetails2SoapOut */
+export interface GetCodeDetails2SoapOut {
+  /** s:string */
+  Result?: {
+    $value?: string;
+    attributes: {
+      "@xsi:type": string;
+    };
+  };
+}

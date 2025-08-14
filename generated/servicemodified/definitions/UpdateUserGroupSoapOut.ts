@@ -1,4 +1,0 @@
-
-/** UpdateUserGroupSoapOut */
-export interface UpdateUserGroupSoapOut {
-}

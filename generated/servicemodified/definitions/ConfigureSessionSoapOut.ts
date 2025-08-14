@@ -1,4 +1,0 @@
-
-/** ConfigureSessionSoapOut */
-export interface ConfigureSessionSoapOut {
-}

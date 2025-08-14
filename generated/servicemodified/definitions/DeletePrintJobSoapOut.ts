@@ -1,4 +1,0 @@
-
-/** DeletePrintJobSoapOut */
-export interface DeletePrintJobSoapOut {
-}

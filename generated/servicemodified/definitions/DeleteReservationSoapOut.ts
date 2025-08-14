@@ -1,4 +1,0 @@
-
-/** DeleteReservationSoapOut */
-export interface DeleteReservationSoapOut {
-}

@@ -1,4 +1,0 @@
-
-/** DeleteTerminalSoapOut */
-export interface DeleteTerminalSoapOut {
-}

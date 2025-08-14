@@ -1,4 +1,0 @@
-
-/** RecordCustomTransactionSoapOut */
-export interface RecordCustomTransactionSoapOut {
-}

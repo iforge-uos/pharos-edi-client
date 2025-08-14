@@ -1,4 +1,0 @@
-
-/** UnlockUserSoapOut */
-export interface UnlockUserSoapOut {
-}

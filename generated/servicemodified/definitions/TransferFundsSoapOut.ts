@@ -1,4 +1,0 @@
-
-/** TransferFundsSoapOut */
-export interface TransferFundsSoapOut {
-}

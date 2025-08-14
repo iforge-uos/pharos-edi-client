@@ -1,4 +1,0 @@
-
-/** ChangePasswordSoapOut */
-export interface ChangePasswordSoapOut {
-}

@@ -1,4 +1,0 @@
-
-/** UpdatePharosStationConfigurationSoapOut */
-export interface UpdatePharosStationConfigurationSoapOut {
-}
