@@ -125,8 +125,8 @@ export class PharosClient {
   async insertUser(user: {
     username: string,
     last_name: string,
-    first_names: string,
-    ucard_number: number,
+    first_name: string,
+    ucard_number: string,
     email: string,
   }): Promise<UnwrapValue<GetUserDetails2SoapOut>> {
    const [inserted] = await this.client.AddUser2Async({
@@ -134,7 +134,7 @@ export class PharosClient {
       id: user.username,
       billing_option: "Advance",
       last_name: user.last_name,
-      first_names: user.first_names,
+      first_names: user.first_name,
       card_id: user.ucard_number.toString(), // should capture the issue number on the client for this
       is_visitor: 0,
       email: `${user.email}@sheffield.ac.uk`,
