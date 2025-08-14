@@ -3,6 +3,7 @@
   "module": "src/index.ts",
   "type": "module",
   "version": "1.0.0",
+  "types": "src/index.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/iforge-uos/pharos-edi-client.git"
