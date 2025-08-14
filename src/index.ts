@@ -1,7 +1,15 @@
 import { XMLParser } from "fast-xml-parser";
+import { wrapSoapCall } from "./errors";
 import { GetUserDetails2SoapOut } from "./generated/service";
 import { ServiceClient, createClientAsync } from "./generated/service/client";
 import { CostCenter, UnwrapValue, User } from "./types";
+export {
+  PharosError,
+  CardNotFound,
+  PharosInternalError,
+  handleSoapFault,
+  wrapSoapCall,
+} from "./errors";
 
 export class PharosClient {
   private readonly client: ServiceClient;
@@ -123,35 +131,42 @@ export class PharosClient {
   }
 
   async insertUser(user: {
-    username: string,
-    last_name: string,
-    first_name: string,
-    ucard_number: string,
-    email: string,
+    username: string;
+    last_name: string;
+    first_name: string;
+    ucard_number: string;
+    email: string;
   }): Promise<UnwrapValue<GetUserDetails2SoapOut>> {
-   const [inserted] = await this.client.AddUser2Async({
-      active: 1,
-      id: user.username,
-      billing_option: "Advance",
-      last_name: user.last_name,
-      first_names: user.first_name,
-      card_id: user.ucard_number.toString(), // should capture the issue number on the client for this
-      is_visitor: 0,
-      email: `${user.email}@sheffield.ac.uk`,
-    }, { postProcess: PharosClient.postProcessSoapXML });
-    return this.mapOutput(inserted);
+    return await wrapSoapCall(async () => {
+      const [inserted] = await this.client.AddUser2Async(
+        {
+          active: 1,
+          id: user.username,
+          billing_option: "Advance",
+          last_name: user.last_name,
+          first_names: user.first_name,
+          card_id: user.ucard_number.toString(), // should capture the issue number on the client for this
+          is_visitor: 0,
+          email: `${user.email}@sheffield.ac.uk`,
+        },
+        { postProcess: PharosClient.postProcessSoapXML },
+      );
+      return this.mapOutput(inserted);
+    });
   }
 
   async getUserDetails(username: string): Promise<UnwrapValue<GetUserDetails2SoapOut>> {
-    const [user] = await this.client.GetUserDetails2Async(
-      {
-        user_id: username,
-        lock_user: 0,
-        transaction_type: 1,
-      },
-      { postProcess: PharosClient.postProcessSoapXML },
-    );
-    return this.mapOutput(user);
+    return await wrapSoapCall(async () => {
+      const [user] = await this.client.GetUserDetails2Async(
+        {
+          user_id: username,
+          lock_user: 0,
+          transaction_type: 1,
+        },
+        { postProcess: PharosClient.postProcessSoapXML },
+      );
+      return this.mapOutput(user);
+    });
   }
 
   async getCostCenters(username: string): Promise<CostCenter[]> {
