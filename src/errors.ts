@@ -33,6 +33,20 @@ export class CardNotFound extends PharosError {
 }
 
 /**
+ * Thrown when a user name already exists in the system
+ */
+export class DuplicateUserName extends PharosError {
+  readonly code = "DUPLICATE_USER_NAME";
+
+  constructor(
+    public readonly userName: string,
+    originalError?: Error,
+  ) {
+    super(`There is already a user called '${userName}'.`, originalError);
+  }
+}
+
+/**
  * Thrown for general internal server errors from Pharos
  */
 export class PharosInternalError extends PharosError {
@@ -41,64 +55,6 @@ export class PharosInternalError extends PharosError {
   constructor(message = "An internal server error occurred", originalError?: Error) {
     super(message, originalError);
   }
-}
-
-/**
- * Interface for SOAP fault details
- */
-export interface SoapFaultDetail {
-  Code?: {
-    Value: string;
-    Subcode?: {
-      Value: string;
-    };
-  };
-  Reason?: {
-    Text: string | { $value: string };
-  };
-  Detail?: any;
-}
-
-/**
- * Parses SOAP fault information and throws appropriate custom errors
- */
-export function handleSoapFault(fault: SoapFaultDetail): never {
-  // Extract fault information
-  let code = "";
-  let message = "";
-  const detail = fault.Detail;
-
-  // Handle SOAP 1.1 and 1.2 fault formats
-  if (fault.Code) {
-    // SOAP 1.2 format
-    code = fault.Code.Value;
-    if (fault.Code.Subcode?.Value) {
-      code += `: ${fault.Code.Subcode.Value}`;
-    }
-  }
-
-  if (fault.Reason) {
-    if (typeof fault.Reason.Text === "string") {
-      message = fault.Reason.Text;
-    } else if (fault.Reason.Text?.$value) {
-      message = fault.Reason.Text.$value;
-    }
-  }
-
-  // Create the original error for reference
-  const originalErrorMessage = `${code}: ${message}${detail ? `: ${JSON.stringify(detail)}` : ""}`;
-  const originalError = new Error(originalErrorMessage);
-
-  // Parse specific error types
-  if (message.includes("Card was not found")) {
-    // Extract card ID from the message
-    const cardIdMatch = message.match(/Card Id: (\w+)/);
-    const cardId = cardIdMatch?.[1] || "unknown";
-    throw new CardNotFound(cardId, originalError);
-  }
-
-  // Default to internal error for unrecognized errors
-  throw new PharosInternalError(message || "An unknown internal server error occurred", originalError);
 }
 
 /**
@@ -122,6 +78,12 @@ export async function wrapSoapCall<T>(soapCall: () => Promise<T>): Promise<T> {
         const cardIdMatch = errorMessage.match(/Card Id: (\w+)/);
         const cardId = cardIdMatch?.[1] || "unknown";
         throw new CardNotFound(cardId, error);
+      }
+
+      if (errorMessage.includes("There is already a user called")) {
+        const userNameMatch = errorMessage.match(/user called '([^']+)'/);
+        const userName = userNameMatch?.[1] || "unknown";
+        throw new DuplicateUserName(userName, error);
       }
     }
 

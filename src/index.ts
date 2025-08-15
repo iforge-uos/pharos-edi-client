@@ -6,8 +6,8 @@ import { CostCenter, UnwrapValue, User } from "./types";
 export {
   PharosError,
   CardNotFound,
+  DuplicateUserName,
   PharosInternalError,
-  handleSoapFault,
   wrapSoapCall,
 } from "./errors";
 
